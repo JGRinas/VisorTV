@@ -1,13 +1,16 @@
 {
   "name": "visor_tv",
   "private": true,
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "version:major": "node version-control.cjs --major",
+    "version:minor": "node version-control.cjs --minor",
+    "version:patch": "node version-control.cjs --patch"
   },
   "dependencies": {
     "react": "^18.3.1",

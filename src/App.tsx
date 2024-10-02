@@ -1,4 +1,5 @@
 import { Header } from "./modules/shared/presentation/header";
+import './styles/global.css';
 
 function App() {
   return (

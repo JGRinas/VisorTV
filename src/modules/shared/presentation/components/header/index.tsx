@@ -3,8 +3,8 @@ import "./styles.css";
 
 export const Header = () => {
   return (
-    <div className="container">
+    <header className="headerContainer">
       <UnneIcon />
-    </div>
+    </header>
   );
 };

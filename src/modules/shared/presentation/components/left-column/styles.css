@@ -1,0 +1,11 @@
+.left-column {
+  background-color: var(--background-secondary);
+  padding: 2vh 1vw;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5vh;
+  height: 82vh;
+  width: 18vw;
+}

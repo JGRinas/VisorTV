@@ -1,7 +1,7 @@
 .headerContainer {
   background-color: var(--background-primary);
   padding: 2vh 3vw;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 .2vw .2vw rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: space-between;
   align-items: center;

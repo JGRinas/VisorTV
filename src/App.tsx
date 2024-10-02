@@ -1,12 +1,8 @@
-import { Header } from "./modules/shared/presentation/header";
-import './styles/global.css';
+import { Home } from "./modules/home/presentation/views";
+import "./styles/global.css";
 
 function App() {
-  return (
-    <>
-      <Header />
-    </>
-  );
+  return <Home />;
 }
 
 export default App;

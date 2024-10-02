@@ -1,0 +1,31 @@
+.card-container {
+  background-color: var(--background-secondary);
+  box-shadow: 0 0.15vw 0.2vw rgba(0, 0, 0, 0.411);
+  border-radius: 0.3vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5vw;
+}
+
+.card-svg {
+  width: 1.5vw;
+  height: auto;
+  color: var(--icon);
+  fill: var(--icon);
+}
+
+.card-temperature-container {
+  background-color: var(--background-secondary);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-temperature-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5vw;
+}

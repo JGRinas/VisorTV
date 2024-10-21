@@ -6,3 +6,9 @@ export function login(repository: IAuthRepository) {
     return await repository.login(params);
   };
 }
+
+export function getProfile(repository: IAuthRepository) {
+  return async function () {
+    return await repository.getProfile();
+  };
+}

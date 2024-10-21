@@ -1,0 +1,23 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 12vh);
+}
+
+@media (min-width: 1200px) {
+  .mainContainer {
+    height: calc(100vh - 9vh);
+  }
+}
+
+@media (max-width: 768px) {
+  .mainContainer {
+    height: calc(100vh - 14vh);
+  }
+}
+
+@media (max-width: 480px) {
+  .mainContainer {
+    height: calc(100vh - 12vh);
+  }
+}

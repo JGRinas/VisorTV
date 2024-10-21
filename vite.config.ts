@@ -11,6 +11,7 @@ export default defineConfig({
       "~": path.resolve(__dirname, "./src"),
       "-": path.resolve(__dirname, "./src/assets/icons"),
       "@": path.resolve(__dirname, "./"),
+      "@/auth": path.resolve(__dirname, "./src/modules/auth/"),
     },
   },
 });

@@ -1,0 +1,84 @@
+.user-list-container {
+  width: 100%;
+  padding: 2rem 0;
+  background-color: var(--background-secondary);
+  border-radius: 0.5rem;
+  min-height: 100vh;
+}
+
+.user-list-container h1 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.user-table th,
+.user-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+  color: var(--text);
+}
+
+.user-table th {
+  background-color: var(--background-primary);
+  color: var(--text);
+  font-weight: bold;
+}
+
+.user-table tr:nth-child(even) {
+  background-color: var(--background-secondary);
+}
+
+.user-table tr:hover {
+  background-color: var(--background-hover);
+}
+
+.action-button {
+  padding: 0.5rem;
+  margin-right: 0.5rem;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  border-radius: 50px;
+}
+
+.action-button.edit {
+  background-color: var(--text-green);
+  color: var(--text);
+}
+
+.action-button.delete {
+  background-color: var(--background-primary);
+  color: var(--text);
+}
+
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.pagination-button {
+  padding: 0.5rem 1rem;
+  margin: 0 0.5rem;
+  border: none;
+  background-color: var(--button-background);
+  color: white;
+  cursor: pointer;
+}
+
+.pagination-button:disabled {
+  background-color: gray;
+  cursor: not-allowed;
+}
+
+.pagination-button:hover:not(:disabled) {
+  background-color: var(--button-hover);
+}

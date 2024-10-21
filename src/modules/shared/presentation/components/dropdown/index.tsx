@@ -1,6 +1,6 @@
 import { IUserProfileDTO } from "~/modules/auth/domain/dtos/request";
 import { FC } from "react";
-import "./styles.css"
+import "./styles.css";
 
 export const Dropdown = ({
   profile,
@@ -19,7 +19,7 @@ export const Dropdown = ({
         <>
           <DropdownItem
             label="Ver Usuarios"
-            onClick={() => handleNavigation("/users")}
+            onClick={() => handleNavigation("/dashboard/user-list")}
           />
           <DropdownItem
             label="Ver Pantallas"

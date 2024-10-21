@@ -4,12 +4,20 @@ import axios, {
   AxiosResponse,
   InternalAxiosRequestConfig,
 } from "axios";
+import { store } from "~/store";
 
-const BASE_URL_VISOR_TV = import.meta.env.VISOR_TV_API_URL;
+// Acceder a las variables de entorno correctamente
+const BASE_URL_VISOR_TV = import.meta.env.VITE_VISOR_TV_API_URL;
 
 // --- Handlers ---
 const requestHandler = async (request: InternalAxiosRequestConfig) => {
   try {
+    const state = store.getState();
+    const token = state.auth.token; // Asumiendo que tu slice se llama authReducer
+
+    if (token) {
+      request.headers["Authorization"] = `Bearer ${token}`; // Añadir el token al header
+    }
     request.headers["x-api-key"] = import.meta.env.VITE_APIKEY;
     const userAgent = navigator.userAgent;
     request.headers["user-agent"] = userAgent;
@@ -21,7 +29,6 @@ const requestHandler = async (request: InternalAxiosRequestConfig) => {
 
 const responseHandler = (response: AxiosResponse) => {
   if (response.status === 401) {
-    // Manejar redirección en caso de no autorizado
     console.log("Unauthorized: Redirect to /login");
   }
   return response;
@@ -74,16 +81,16 @@ function addInterceptors(instance: AxiosInstance) {
 
 type InstanceType = "AUTH" | "USER" | "SCREEN";
 
+// Acceder a los prefijos de las rutas
 const PREFIX = {
-  BASE_URL_VISOR_TV,
-  AUTH: import.meta.env.PREFIX_AUTH,
-  USER: import.meta.env.PREFIX_USER,
-  SCREEN: import.meta.env.PREFIX_SCREEN,
+  AUTH: import.meta.env.VITE_PREFIX_AUTH,
+  USER: import.meta.env.VITE_PREFIX_USER,
+  SCREEN: import.meta.env.VITE_PREFIX_SCREEN,
 };
 
 const createInstance = (type: InstanceType) => {
   const instance = axios.create({
-    baseURL: `${BASE_URL_VISOR_TV}/${PREFIX[type]}`,
+    baseURL: `${BASE_URL_VISOR_TV}/${PREFIX[type]}`, // Asegurarse de tener la barra aquí
   });
 
   addInterceptors(instance);

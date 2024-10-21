@@ -11,7 +11,7 @@ export const Login = () => {
     resolver: yupResolver(loginSchema),
   });
 
-  const { onLogin } = useLogin();
+  const { onLogin, isError, isPending } = useLogin();
 
   const onSubmit = (data: ILoginRequestDTO) => onLogin(data);
 
@@ -43,10 +43,16 @@ export const Login = () => {
                 {methods.formState.errors.password.message}
               </p>
             )}
-            <button type="submit" className="login-button">
-              Iniciar sesión
+            <button type="submit" className="login-button" disabled={isPending}>
+              {isPending ? "Iniciando sesión..." : "Iniciar sesión"}
             </button>
           </form>
+
+          {isError && (
+            <div className="error-message">
+              <p>Usuario o contraseña incorrectos</p>
+            </div>
+          )}
         </div>
       </div>
     </FormProvider>

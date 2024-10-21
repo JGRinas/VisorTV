@@ -47,18 +47,20 @@ h1 {
   border: 1px solid #ccc;
   border-radius: 5px;
   box-sizing: border-box;
+  background-color: #f4f4f4;
+  color: #333
 }
 
 .input-group input:focus {
   outline: none;
-  border-color: #007bff;
+  border-color: var(--background-primary);
 }
 
 .login-button {
   width: 100%;
   padding: 12px;
   font-size: 16px;
-  background-color: #007bff;
+  background-color: var(--background-primary);
   border: none;
   border-radius: 5px;
   color: white;
@@ -67,7 +69,7 @@ h1 {
 }
 
 .login-button:hover {
-  background-color: #0056b3;
+  background-color: var(--icon);
 }
 
 /* Estilo para mensajes de error */

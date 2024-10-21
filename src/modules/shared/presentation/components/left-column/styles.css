@@ -1,11 +1,34 @@
 .left-column {
   background-color: var(--background-secondary);
   padding: 2vh 1vw;
-  box-shadow: 0 .2vw .2vw rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0.2vw 0.2vw rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   gap: 1.5vh;
-  height: 82vh;
+  flex-grow: 1;
   width: 18vw;
+  overflow-y: hidden;
+}
+
+/* Ajustes responsivos */
+@media (min-width: 1200px) {
+  .left-column {
+    width: 16vw;
+    padding: 2vh 0.8vw;
+  }
+}
+
+@media (max-width: 768px) {
+  .left-column {
+    width: 25vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .left-column {
+    width: 35vw;
+    padding: 2vh 3vw;
+    gap: 2vh;
+  }
 }

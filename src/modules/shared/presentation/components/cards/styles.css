@@ -6,6 +6,7 @@
   justify-content: center;
   align-items: center;
   gap: 0.5vw;
+  padding: 1vh 1vw;
 }
 
 .card-svg {
@@ -28,4 +29,51 @@
   justify-content: center;
   align-items: center;
   gap: 0.5vw;
+}
+
+.card-temperature-svg {
+  width: 3.5vw;
+  height: auto;
+}
+
+/* Pantallas grandes */
+@media (min-width: 1200px) {
+  .card-container {
+    padding: 1.5vh 1.5vw;
+    gap: 0.4vw;
+  }
+  .card-svg {
+    width: 1.2vw;
+  }
+  .card-temperature-item {
+    gap: 0.4vw;
+  }
+}
+
+/* Pantallas medianas */
+@media (max-width: 768px) {
+  .card-container {
+    padding: 1.5vh 2vw;
+    gap: 0.8vw;
+  }
+  .card-svg {
+    width: 2vw;
+  }
+  .card-temperature-item {
+    gap: 0.8vw;
+  }
+}
+
+/* Pantallas pequeñas */
+@media (max-width: 480px) {
+  .card-container {
+    padding: 2vh 4vw;
+    gap: 2vw;
+  }
+  .card-svg {
+    width: 3vw;
+  }
+  .card-temperature-item {
+    gap: 2vw;
+  }
 }

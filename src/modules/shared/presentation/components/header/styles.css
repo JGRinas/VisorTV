@@ -1,7 +1,7 @@
 .headerContainer {
   background-color: var(--background-primary);
   padding: 2vh 3vw;
-  box-shadow: 0 .2vw .2vw rgba(0, 0, 0, 0.4);
+  box-shadow: 0 0.2vw 0.2vw rgba(0, 0, 0, 0.4);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -11,4 +11,37 @@
 .headerContainer svg {
   width: 25%;
   height: 100%;
+}
+
+@media (min-width: 1200px) {
+  .headerContainer {
+    padding: 1vh 2vw;
+    height: 8vh;
+  }
+
+  .headerContainer svg {
+    width: 20%;
+  }
+}
+
+@media (max-width: 768px) {
+  .headerContainer {
+    padding: 2vh 5vw;
+    height: 12vh;
+  }
+
+  .headerContainer svg {
+    width: 30%;
+  }
+}
+
+@media (max-width: 480px) {
+  .headerContainer {
+    padding: 2vh 4vw;
+    height: 10vh;
+  }
+
+  .headerContainer svg {
+    width: 70%;
+  }
 }

@@ -39,11 +39,11 @@ export const CardTemperature = () => {
     <Card>
       <div className="card-temperature-container">
         <div className="card-temperature-item">
-          <CloudyIcon />
+          <CloudyIcon className="card-temperature-svg" />
           <TextGreen>28°</TextGreen>
         </div>
-          <Title>Ligeramente nublado</Title>
-          <Text>Actualizado: 17h</Text>
+        <Title>Ligeramente nublado</Title>
+        <Text>Actualizado: 17h</Text>
       </div>
     </Card>
   );

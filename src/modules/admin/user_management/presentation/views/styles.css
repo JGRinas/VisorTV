@@ -82,3 +82,15 @@
 .pagination-button:hover:not(:disabled) {
   background-color: var(--button-hover);
 }
+
+td input {
+  background-color: aliceblue;
+  color: #333;
+  padding: 5px;
+}
+
+td select {
+  background-color: aliceblue;
+  color: #333;
+  padding: 5px;
+}

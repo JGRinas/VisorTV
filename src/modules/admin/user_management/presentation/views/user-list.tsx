@@ -1,7 +1,20 @@
 import { Header } from "~/modules/shared/presentation/components/header";
 import { useState } from "react";
 import "./styles.css";
-import { useUsers } from "../../infrastructure/hooks";
+import {
+  useDeleteUser,
+  useEditUser,
+  useUsers,
+  useRegisterUser,
+} from "../../infrastructure/hooks";
+import { IUser } from "../../domain/dtos/response";
+import { ErrorOrLoading } from "../components/error-or-loading";
+import { UserTable } from "../components/user-table";
+import { PaginationControls } from "../components/pagination-control";
+import {
+  IEditUserRequestDTO,
+  IRegisterUserDTO,
+} from "../../domain/dtos/request";
 
 export const UserList = () => {
   const [page, setPage] = useState(1);
@@ -12,12 +25,20 @@ export const UserList = () => {
     limit
   );
 
-  const handleEdit = (id: string) => {
-    console.log(`Edit user with id ${id}`);
+  const { mutate: deleteUser } = useDeleteUser();
+  const { mutate: editUser } = useEditUser();
+  const { mutate: registerUser } = useRegisterUser();
+
+  const handleEdit = (id: string, updatedUser: IEditUserRequestDTO) => {
+    editUser({ id, payload: updatedUser });
   };
 
   const handleDelete = (id: string) => {
-    console.log(`Delete user with id ${id}`);
+    deleteUser(id);
+  };
+
+  const handleAddUser = (newUser: IRegisterUserDTO) => {
+    registerUser(newUser);
   };
 
   if (isLoading || isError)
@@ -28,79 +49,18 @@ export const UserList = () => {
       <Header />
       <main className="user-list-container">
         <h1>Listado de Usuarios</h1>
-        <table className="user-table">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Correo</th>
-              <th>Rol</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {users?.map((user) => (
-              <tr key={user._id}>
-                <td>{user.name}</td>
-                <td>{user.email}</td>
-                <td>{user.role}</td>
-                <td>
-                  <button
-                    className="action-button edit"
-                    onClick={() => handleEdit(user._id)}
-                  >
-                    Editar
-                  </button>
-                  <button
-                    className="action-button delete"
-                    onClick={() => handleDelete(user._id)}
-                  >
-                    Eliminar
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        <div className="pagination-controls">
-          <button
-            className="pagination-button"
-            onClick={() => setPage((prev) => Math.max(prev - 1, 1))}
-            disabled={page === 1}
-          >
-            Anterior
-          </button>
-          <span>
-            Página {currentPage} de {totalPages}
-          </span>
-          <button
-            className="pagination-button"
-            onClick={() =>
-              setPage((prev) => (prev < totalPages ? prev + 1 : prev))
-            }
-            disabled={page >= totalPages}
-          >
-            Siguiente
-          </button>
-        </div>
+        <UserTable
+          users={users as unknown as IUser[]}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+          handleAddUser={handleAddUser}
+        />
+        <PaginationControls
+          currentPage={currentPage}
+          totalPages={totalPages}
+          setPage={setPage}
+        />
       </main>
-    </>
-  );
-};
-
-const ErrorOrLoading = ({
-  isError,
-  isLoading,
-}: {
-  isError: boolean;
-  isLoading: boolean;
-}) => {
-  return (
-    <>
-      <Header />
-      <div className="user-list-container">
-        {isError && <h1>Error al cargar los usuarios</h1>}
-        {isLoading && <h1>Cargando...</h1>}
-      </div>
     </>
   );
 };

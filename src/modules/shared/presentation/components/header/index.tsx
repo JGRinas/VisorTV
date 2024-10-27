@@ -18,9 +18,12 @@ export const Header = () => {
     setDropdownVisible(false);
     navigate(path);
   };
+
   return (
     <header className="headerContainer">
-      <UnneIcon />
+      <a href="/" className="unneIconLink" aria-label="Go to Home">
+        <UnneIcon className="unneIconLink" />
+      </a>
       {profile ? (
         <div className="userMenu">
           <button className="dropdown-toggle" onClick={toggleDropdown}>

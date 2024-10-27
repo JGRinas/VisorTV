@@ -1,8 +1,11 @@
+import { ERoleDTO } from "~/modules/auth/domain/dtos/request";
+
 export interface IUser {
   _id: string;
   email: string;
-  role: string;
+  role: ERoleDTO;
   name: string;
+  surname: string;
 }
 
 export interface IUserResponse {

@@ -1,8 +1,10 @@
-// services/weatherService.ts
 import axios from "axios";
+import * as dotenv from "dotenv";
 
-const API_KEY = import.meta.env.VITE_OPENWEATHER_API_KEY; // Reemplaza con tu clave de OpenWeatherMap
-const BASE_URL = import.meta.env.VITE_OPENWEATHER_BASE_URL;
+dotenv.config();
+
+const API_KEY = process.env.VITE_OPENWEATHER_API_KEY;
+const BASE_URL = process.env.VITE_OPENWEATHER_BASE_URL;
 
 export const fetchWeatherData = async (location: {
   country: string;

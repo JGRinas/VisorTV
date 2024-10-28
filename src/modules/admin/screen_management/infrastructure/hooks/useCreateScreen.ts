@@ -11,7 +11,7 @@ export const useCreateScreen = () => {
     isError,
     isPending,
   } = useMutation({
-    mutationKey: ["createScreen"],
+    mutationKey: ["create-screen"],
     mutationFn: async (screenData: IScreenPayload) =>
       createScreen(screenRepository)(screenData),
     onSuccess: () => {

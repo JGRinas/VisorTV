@@ -18,3 +18,15 @@ export function getAssignedScreen(repository: IScreenRepository) {
     return await repository.getAssignedScreen();
   };
 }
+
+export function getScreen(repository: IScreenRepository) {
+  return async function (id: string) {
+    return await repository.getScreen(id);
+  };
+}
+
+export function deleteScreen(repository: IScreenRepository) {
+  return async function (id: string) {
+    return await repository.deleteScreen(id);
+  };
+}

@@ -13,3 +13,8 @@ export interface IScreenPayload {
   assignedOperators: string[];
   components: IComponentPayload[];
 }
+
+export interface IUpdateScreenParams {
+  screenData: IScreenPayload;
+  id: string;
+}

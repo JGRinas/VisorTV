@@ -1,0 +1,25 @@
+.screen-builder-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.screen-builder-content {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 1rem;
+  padding: 1rem;
+  height: calc(100vh - 70px);
+}
+
+.center-content {
+  display: grid;
+  grid-template-rows: 2fr 3fr;
+  gap: 1rem;
+}
+
+.lower-center-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1rem;
+}

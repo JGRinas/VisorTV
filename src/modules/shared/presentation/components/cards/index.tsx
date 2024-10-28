@@ -20,7 +20,7 @@ const icons = {
 
 interface ICard {
   icon?: keyof typeof icons;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const Card = ({ icon, children }: ICard) => {

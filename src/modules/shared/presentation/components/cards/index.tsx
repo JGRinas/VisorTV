@@ -20,7 +20,7 @@ const icons = {
 
 interface ICard {
   icon?: keyof typeof icons;
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 export const Card = ({ icon, children }: ICard) => {
@@ -34,15 +34,31 @@ export const Card = ({ icon, children }: ICard) => {
   );
 };
 
-export const CardTemperature = () => {
+export const CardTemperature = ({
+  degrees,
+  title,
+  icon,
+}: {
+  degrees: string;
+  icon: string;
+  title: string;
+}) => {
   return (
     <Card>
       <div className="card-temperature-container">
         <div className="card-temperature-item">
-          <CloudyIcon className="card-temperature-svg" />
-          <TextGreen>28°</TextGreen>
+          {icon ? (
+            <img
+              src={icon}
+              alt="Weather icon"
+              className="card-temperature-icon"
+            />
+          ) : (
+            <CloudyIcon className="card-temperature-svg" />
+          )}
+          <TextGreen>{degrees}°</TextGreen>
         </div>
-        <Title>Ligeramente nublado</Title>
+        <Title>{title}</Title>
         <Text>Actualizado: 17h</Text>
       </div>
     </Card>

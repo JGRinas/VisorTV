@@ -1,0 +1,28 @@
+.dropdown-select {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: aliceblue;
+  color: #000;
+}
+.dropdown-operator {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+}
+.operator-dropdown {
+  display: flex;
+  background-color: #fff;
+  padding-left: 10px;
+}
+.assigned-operators-list ul {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.assigned-operators-list ul li {
+  display: flex;
+  flex-direction: column;
+  margin-top: -10px;
+}

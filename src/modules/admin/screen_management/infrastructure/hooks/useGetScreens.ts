@@ -12,9 +12,9 @@ export const useGetScreens = () => {
 };
 
 export const useGetScreen = (id: string) => {
-  const { data, isLoading, isError } = useQuery({
+  const { data, isLoading, isError, isSuccess } = useQuery({
     queryKey: ["screen"],
     queryFn: async () => getScreen(screenRepository)(id),
   });
-  return { data, isLoading, isError };
+  return { data, isLoading, isError, isSuccess };
 };

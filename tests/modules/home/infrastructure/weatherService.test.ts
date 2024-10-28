@@ -1,9 +1,16 @@
-// weatherService.test.ts
 import axios from "axios";
 import { fetchWeatherData } from "../../../../src/modules/home/infrastructure/weatherService";
+import { vi, describe, it, expect } from "vitest";
 
-jest.mock("axios"); // Mocks axios para evitar llamadas reales a la API
+vi.mock("axios"); // Mocks axios para evitar llamadas reales a la API
 const mockedAxios = axios as jest.Mocked<typeof axios>;
+
+global.localStorage = {
+  getItem: vi.fn(),
+  setItem: vi.fn(),
+  removeItem: vi.fn(),
+  clear: vi.fn(),
+};
 
 describe("fetchWeatherData", () => {
   it("debe obtener y devolver los datos de clima correctamente", async () => {

@@ -4,7 +4,11 @@ import TempInfoInput from "../components/inputs/temperature/temp-info-input";
 import CarouselInput from "../components/inputs/carousel/carousel-input";
 import CameraInput from "../components/inputs/camera/camera-input";
 import StaticInfoInput from "../components/inputs/static-info/static-info-input";
-import { ScreenProvider } from "../../infrastructure/provider";
+import {
+  ScreenProvider,
+  useScreenContext,
+} from "../../infrastructure/provider";
+import NameInput from "../components/inputs/name/name-input";
 
 const ScreenWrapper = () => (
   <ScreenProvider>
@@ -13,9 +17,12 @@ const ScreenWrapper = () => (
 );
 
 const ScreenBuilder = () => {
+  const { handleSubmit } = useScreenContext();
+
   return (
     <div className="screen-builder-container">
       <Header />
+      <NameInput />
       <div className="screen-builder-content">
         <TempInfoInput />
         <div className="center-content">
@@ -26,6 +33,9 @@ const ScreenBuilder = () => {
           </div>
         </div>
       </div>
+      <button className="add-screen" onClick={handleSubmit}>
+        Agregar pantalla
+      </button>
     </div>
   );
 };

@@ -22,6 +22,10 @@ export const Dropdown = ({
             onClick={() => handleNavigation("/dashboard/user-list")}
           />
           <DropdownItem
+            label="Nueva pantalla"
+            onClick={() => handleNavigation("/dashboard/screen-builder")}
+          />
+          <DropdownItem
             label="Ver Pantallas"
             onClick={() => handleNavigation("/screens")}
           />

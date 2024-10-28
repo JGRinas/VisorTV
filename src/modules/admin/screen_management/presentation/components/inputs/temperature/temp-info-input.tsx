@@ -21,16 +21,16 @@ const availableComponents: { type: ComponentType; label: string }[] = [
 ];
 
 const TempInfoInput = () => {
-  const { screenData, addComponent, removeComponent } = useScreenContext();
+  const { screenData, removeWeatherItem, addWeatherItem } = useScreenContext();
   const [dropdownVisible, setDropdownVisible] = useState(false);
 
   const handleAddComponent = (type: ComponentType) => {
-    addComponent(type);
+    addWeatherItem(type);
     setDropdownVisible(false);
   };
 
   const isComponentAdded = (type: string) =>
-    screenData.components.some((component) => component.type === type);
+    screenData.weatherItems.some((component) => component === type);
 
   return (
     <div className="left-panel">
@@ -58,15 +58,17 @@ const TempInfoInput = () => {
       )}
 
       <div className="components-container">
-        {screenData.components.map((component) => (
-          <div key={component.id}>
-            {component.type === "temperature" ? (
+        {screenData.weatherItems.map((item) => (
+          <div key={item}>
+            {item === "temperature" ? (
               <CardTemperature />
             ) : (
-              <Card icon={component.type} />
+              <Card icon={item} />
             )}
             <DeleteSectionButton
-              onClick={() => removeComponent(component.id)}
+              onClick={() => {
+                removeWeatherItem(item);
+              }}
             />
           </div>
         ))}

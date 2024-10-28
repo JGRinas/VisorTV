@@ -7,8 +7,10 @@ import DeleteSectionButton from "../../buttons/delete-section-button";
 
 const StaticInfoInput = () => {
   const { screenData, updateStaticInfoContent } = useScreenContext();
-  const [isEditorVisible, setIsEditorVisible] = useState(false);
-
+  const [isEditorVisible, setIsEditorVisible] = useState<boolean>(
+    !!screenData.staticInfoContent
+  );
+  console.log("!!screenData.staticInfoContent", !!screenData.staticInfoContent);
   const handleToggleEditor = () => {
     setIsEditorVisible(!isEditorVisible);
     updateStaticInfoContent("");
@@ -19,7 +21,7 @@ const StaticInfoInput = () => {
 
   return (
     <div className="right-center-panel">
-      {isEditorVisible ? (
+      {isEditorVisible || !!screenData.staticInfoContent ? (
         <>
           <MarkdownEditor
             content={screenData.staticInfoContent}

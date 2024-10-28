@@ -16,6 +16,8 @@ const CarouselInput = () => {
     }
   };
 
+  const carouselItems = screenData.carouselItems || [];
+
   return (
     <div className="top-center-panel">
       <h3>Carrusel</h3>
@@ -29,7 +31,7 @@ const CarouselInput = () => {
       <AddSectionButton onClick={handleAddImage} />
 
       <div className="carousel-images">
-        {screenData.carouselItems.map((item) => (
+        {carouselItems.map((item) => (
           <div key={item.id} className="carousel-image-item">
             <img
               src={item.imageUrl}

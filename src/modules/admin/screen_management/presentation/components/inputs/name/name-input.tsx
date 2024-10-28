@@ -2,7 +2,7 @@ import "./styles.css";
 import { useScreenContext } from "../../../../infrastructure/provider";
 
 const NameInput = () => {
-  const { addScreenName } = useScreenContext();
+  const { screenData, addScreenName } = useScreenContext();
   return (
     <div className="top-center-panel">
       <input
@@ -10,6 +10,7 @@ const NameInput = () => {
         placeholder="Nombre de la pantalla"
         onChange={(e) => addScreenName(e.target.value)}
         className="name-input"
+        value={screenData.name}
       />
     </div>
   );

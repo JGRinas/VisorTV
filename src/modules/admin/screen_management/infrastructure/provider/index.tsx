@@ -1,6 +1,15 @@
-import React, { createContext, useContext, useState, useMemo } from "react";
+import React, {
+  createContext,
+  useContext,
+  useState,
+  useMemo,
+  useEffect,
+} from "react";
 import { adaptScreenDataToBackend } from "../adapters/screen-data";
 import { useCreateScreen } from "../hooks/useCreateScreen";
+import { useUpdateScreen } from "../hooks/useUpdateScreen";
+import { IScreen } from "../../domain/dtos/response";
+import { adaptBackendDataToScreenData } from "../adapters/screen-response";
 
 export type ComponentType =
   | "location"
@@ -22,14 +31,19 @@ export interface ScreenData {
   isCameraVisible: boolean;
   staticInfoContent: string;
   assignedOperators: string[];
+  weatherItems: string[];
 }
 
 interface ScreenContextProps {
   screenData: ScreenData;
   addComponent: (type: ComponentType) => void;
   removeComponent: (id: number) => void;
+  addOperator: (operatorId: string) => void;
+  removeOperator: (operatorId: string) => void;
   addCarouselItem: (imageUrl: string) => void;
   addScreenName: (name: string) => void;
+  addWeatherItem: (item: string) => void;
+  removeWeatherItem: (item: string) => void;
   removeCarouselItem: (id: number) => void;
   toggleCamera: () => void;
   updateStaticInfoContent: (content: string) => void;
@@ -38,19 +52,29 @@ interface ScreenContextProps {
 
 const ScreenContext = createContext<ScreenContextProps | undefined>(undefined);
 
-export const ScreenProvider: React.FC<{ children: React.ReactNode }> = ({
-  children,
-}) => {
+export const ScreenProvider: React.FC<{
+  children: React.ReactNode;
+  initialScreenData?: IScreen;
+}> = ({ children, initialScreenData }) => {
   const [screenData, setScreenData] = useState<ScreenData>({
     name: "",
     components: [],
     carouselItems: [],
     isCameraVisible: false,
     staticInfoContent: "",
-    assignedOperators: ["67163f8ad4e51c2081ddc55a"],
+    assignedOperators: [],
+    weatherItems: [],
   });
   console.log(screenData);
   const { addScreen } = useCreateScreen();
+
+  const { modifyScreen } = useUpdateScreen();
+
+  useEffect(() => {
+    if (initialScreenData) {
+      setScreenData(adaptBackendDataToScreenData(initialScreenData));
+    }
+  }, [initialScreenData]);
 
   const addScreenName = (name: string) => {
     setScreenData((prev) => ({
@@ -71,6 +95,20 @@ export const ScreenProvider: React.FC<{ children: React.ReactNode }> = ({
     setScreenData((prev) => ({
       ...prev,
       components: prev.components.filter((component) => component.id !== id),
+    }));
+  };
+
+  const addWeatherItem = (item: string) => {
+    setScreenData((prev) => ({
+      ...prev,
+      weatherItems: [...prev.weatherItems, item],
+    }));
+  };
+
+  const removeWeatherItem = (item: string) => {
+    setScreenData((prev) => ({
+      ...prev,
+      weatherItems: prev.weatherItems.filter((i) => i !== item),
     }));
   };
 
@@ -103,11 +141,29 @@ export const ScreenProvider: React.FC<{ children: React.ReactNode }> = ({
     }));
   };
 
+  const addOperator = (operatorId: string) => {
+    setScreenData((prev) => ({
+      ...prev,
+      assignedOperators: [...prev.assignedOperators, operatorId],
+    }));
+  };
+
+  const removeOperator = (operatorId: string) => {
+    setScreenData((prev) => ({
+      ...prev,
+      assignedOperators: prev.assignedOperators.filter(
+        (id) => id !== operatorId
+      ),
+    }));
+  };
+
   const handleSubmit = async () => {
-    const payload = adaptScreenDataToBackend({
-      ...screenData,
-    });
-    await addScreen(payload);
+    const payload = adaptScreenDataToBackend(screenData);
+    if (initialScreenData) {
+      await modifyScreen({ id: initialScreenData._id, screenData: payload });
+    } else {
+      await addScreen(payload);
+    }
   };
 
   const value = useMemo(
@@ -121,6 +177,10 @@ export const ScreenProvider: React.FC<{ children: React.ReactNode }> = ({
       updateStaticInfoContent,
       handleSubmit,
       addScreenName,
+      addWeatherItem,
+      removeWeatherItem,
+      addOperator,
+      removeOperator,
     }),
     [screenData]
   );

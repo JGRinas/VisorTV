@@ -9,22 +9,27 @@ import {
   useScreenContext,
 } from "../../infrastructure/provider";
 import NameInput from "../components/inputs/name/name-input";
-import OperatorDropdown from "../components/inputs/operators/operator-input";
+import { useParams } from "react-router-dom";
+import { useGetScreen } from "../../infrastructure/hooks/useGetScreens";
 
-const ScreenWrapper = () => (
-  <ScreenProvider>
-    <ScreenBuilder />
-  </ScreenProvider>
-);
+const ScreenWrapper = () => {
+  const { screenId } = useParams();
+  const { data: screenData } = useGetScreen(screenId!);
 
-const ScreenBuilder = () => {
+  return (
+    <ScreenProvider initialScreenData={screenData}>
+      <ScreenEdit />
+    </ScreenProvider>
+  );
+};
+
+const ScreenEdit = () => {
   const { handleSubmit } = useScreenContext();
 
   return (
     <div className="screen-builder-container">
       <Header />
       <NameInput />
-      <OperatorDropdown />
       <div className="screen-builder-content">
         <TempInfoInput />
         <div className="center-content">
@@ -36,7 +41,7 @@ const ScreenBuilder = () => {
         </div>
       </div>
       <button className="add-screen" onClick={handleSubmit}>
-        Agregar pantalla
+        Editar pantalla
       </button>
     </div>
   );

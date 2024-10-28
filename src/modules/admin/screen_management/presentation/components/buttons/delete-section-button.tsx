@@ -9,3 +9,17 @@ const DeleteSectionButton = ({ onClick }: { onClick: () => void }) => {
 };
 
 export default DeleteSectionButton;
+
+export const SectionButton = ({
+  onClick,
+  text,
+}: {
+  onClick: () => void;
+  text: string;
+}) => {
+  return (
+    <button className="delete-section-button" onClick={onClick}>
+      {text}
+    </button>
+  );
+};

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useMemo } from "react";
+import React, { createContext, useContext, useEffect, useMemo } from "react";
 import { useParams } from "react-router-dom";
 import { IScreen } from "~/modules/admin/screen_management/domain/dtos/response";
 import { useGetScreen } from "~/modules/admin/screen_management/infrastructure/hooks/useGetScreens";
@@ -19,11 +19,23 @@ export const HomeProvider: React.FC<{
     data: screenData,
     isError,
     isLoading,
+    isSuccess,
   } = useGetScreen(screenId ?? "671fcfdc9355e29e309eda18");
 
+  const getScreenDataFromLocalStorage = () => {
+    const storedConfig = localStorage.getItem("screenData");
+    return storedConfig ? JSON.parse(storedConfig) : null;
+  };
+  const screenDataCache = getScreenDataFromLocalStorage();
+
+  useEffect(() => {
+    if (isSuccess)
+      localStorage.setItem("screenData", JSON.stringify(screenData));
+  }, [isSuccess, screenData]);
+
   const value = useMemo(
-    () => ({ screenData, isError, isLoading }),
-    [screenData, isError, isLoading]
+    () => ({ screenData: screenData ?? screenDataCache, isError, isLoading }),
+    [screenData, isError, isLoading, screenDataCache]
   );
   return <HomeContext.Provider value={value}>{children}</HomeContext.Provider>;
 };

@@ -1,10 +1,11 @@
 import axios from "axios";
-import * as dotenv from "dotenv";
 
-dotenv.config();
-
-const API_KEY = process.env.VITE_OPENWEATHER_API_KEY;
-const BASE_URL = process.env.VITE_OPENWEATHER_BASE_URL;
+const API_KEY =
+  import.meta.env?.VITE_OPENWEATHER_API_KEY ||
+  process.env.VITE_OPENWEATHER_API_KEY;
+const BASE_URL =
+  import.meta.env?.VITE_OPENWEATHER_BASE_URL ||
+  process.env.VITE_OPENWEATHER_BASE_URL;
 
 export const fetchWeatherData = async (location: {
   country: string;
@@ -21,8 +22,7 @@ export const fetchWeatherData = async (location: {
     });
 
     const data = response.data;
-
-    return {
+    const formattedData = {
       temperature: `${data.main.temp}°C`,
       icon: `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
       condition: data.weather[0].description,
@@ -32,6 +32,10 @@ export const fetchWeatherData = async (location: {
       wind: `${data.wind.speed} km/h`,
       visibility: `${data.visibility / 1000} km`,
     };
+
+    localStorage.setItem("weatherData", JSON.stringify(formattedData));
+
+    return formattedData;
   } catch (error) {
     console.error("Error fetching weather data:", error);
     throw new Error("No se pudo obtener la información del clima.");

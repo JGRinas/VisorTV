@@ -1,48 +1,13 @@
-import { useHomeContext } from "~/modules/home/infrastructure/provider";
 import {
   Card,
   CardTemperature,
 } from "../../../../shared/presentation/components/cards";
 import { Text, Title } from "../../../../shared/presentation/components/texts";
 import "./styles.css";
-import { useQuery } from "@tanstack/react-query";
-import { fetchWeatherData } from "~/modules/home/infrastructure/weatherService";
+import { useWeatherData } from "~/modules/home/infrastructure/hooks/useWeatherData";
 
 export const LeftColumn = () => {
-  const { screenData } = useHomeContext();
-  const weatherComponent = screenData?.components.find(
-    (component) => component.type === "weather"
-  );
-
-  const defaultLocation = { country: "Argentina", province: "Corrientes" };
-
-  const {
-    data: weatherData,
-    isLoading,
-    isError,
-  } = useQuery({
-    queryKey: ["weatherData", defaultLocation],
-    queryFn: () => fetchWeatherData(defaultLocation),
-
-    enabled: !!weatherComponent,
-    refetchOnWindowFocus: false,
-  });
-
-  const weatherInfo = {
-    location: defaultLocation,
-    temperature: "Cargando...",
-    condition: "Cargando...",
-    lastUpdated: "--",
-    humidity: "--",
-    pressure: "--",
-    wind: "--",
-    visibility: "--",
-    ...weatherData, // Sobrescribe con los datos reales si existen
-  };
-
-  if (isError) {
-    return <div>Error al cargar el clima</div>;
-  }
+  const { weatherInfo, weatherComponent } = useWeatherData();
 
   return (
     <div className="left-panel">
@@ -71,12 +36,14 @@ export const LeftColumn = () => {
             <Text>{weatherInfo.pressure}</Text>
           </Card>
         )}
-        {weatherComponent?.weatherItems.includes("wind") && (
-          <Card icon="wind">
-            <Title>Viento:</Title>
-            <Text>{weatherInfo.wind}</Text>
-          </Card>
-        )}
+        {weatherComponent?.weatherItems.includes("wind") &&
+          weatherInfo.wind && (
+            <Card icon="wind">
+              <Title>Viento:</Title>
+              {/* Formatea la velocidad y la dirección del viento */}
+              <Text>{`${weatherInfo.wind} km/h, Dirección: ${weatherInfo.wind.deg}°`}</Text>
+            </Card>
+          )}
         {weatherComponent?.weatherItems.includes("visibility") && (
           <Card icon="visibility">
             <Title>Visibilidad:</Title>

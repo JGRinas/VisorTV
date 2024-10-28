@@ -1,15 +1,16 @@
 import { UnneIcon } from "~/assets/icons";
 import "./styles.css";
-import { useAppSelector } from "~/store";
+import { useAppDispatch, useAppSelector } from "~/store";
 import { Dropdown } from "../dropdown";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { logout } from "~/modules/auth/infrastructure/user-slice";
 
 export const Header = () => {
   const profile = useAppSelector((state) => state.auth.profile);
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const navigate = useNavigate();
-
+  const dispatch = useAppDispatch();
   const toggleDropdown = () => {
     setDropdownVisible((prevState) => !prevState);
   };
@@ -17,6 +18,11 @@ export const Header = () => {
   const handleNavigation = (path: string) => {
     setDropdownVisible(false);
     navigate(path);
+  };
+  const handleLogout = () => {
+    setDropdownVisible(false);
+    dispatch(logout());
+    navigate("/");
   };
 
   return (
@@ -34,6 +40,7 @@ export const Header = () => {
               dropdownVisible={dropdownVisible}
               handleNavigation={handleNavigation}
               profile={profile}
+              handleLogout={handleLogout}
             />
           }
         </div>

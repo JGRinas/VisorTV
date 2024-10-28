@@ -6,10 +6,12 @@ export const Dropdown = ({
   profile,
   dropdownVisible,
   handleNavigation,
+  handleLogout,
 }: {
   profile: IUserProfileDTO;
   dropdownVisible: boolean;
   handleNavigation: (path: string) => void;
+  handleLogout: () => void;
 }) => {
   if (!profile) return null;
 
@@ -27,15 +29,19 @@ export const Dropdown = ({
           />
           <DropdownItem
             label="Ver Pantallas"
-            onClick={() => handleNavigation("/screens")}
+            onClick={() => handleNavigation("/dashboard/screens")}
           />
+          <DropdownItem label="Cerrar sesión" onClick={handleLogout} />
         </>
       )}
       {profile.role === "operator" && (
-        <DropdownItem
-          label="Ver Pantallas"
-          onClick={() => handleNavigation("/screens")}
-        />
+        <>
+          <DropdownItem
+            label="Ver Pantallas"
+            onClick={() => handleNavigation("/dashboard/screens")}
+          />
+          <DropdownItem label="Cerrar sesión" onClick={handleLogout} />
+        </>
       )}
     </div>
   );

@@ -11,7 +11,7 @@ const CameraView = () => {
   const isOnline = navigator.onLine;
 
   return (
-    <div className="left-center-panel">
+    <div className="left-center-panel-home">
       {isCameraVisible &&
         (isOnline ? (
           <CameraBridge />

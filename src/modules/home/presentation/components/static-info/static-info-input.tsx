@@ -10,8 +10,8 @@ const StaticInfo = () => {
     (component) => component.type === "static_info"
   );
   return (
-    <div className="right-center-panel">
-      <div className="markdown-preview">
+    <div className="right-center-panel-home">
+      <div className="markdown-preview-home">
         <ReactMarkdown>
           {staticInfoComponent?.content || "No hay contenido disponible."}
         </ReactMarkdown>

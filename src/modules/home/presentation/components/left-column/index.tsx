@@ -10,7 +10,7 @@ export const LeftColumn = () => {
   const { weatherInfo, weatherComponent } = useWeatherData();
 
   return (
-    <div className="left-panel">
+    <div className="left-panel-home">
       <div className="components-container">
         {weatherComponent?.weatherItems.includes("location") && (
           <Card icon="location">

@@ -48,6 +48,34 @@
   display: flex;
 }
 
+@media (min-width: 2560px) {
+  .headerContainer a svg {
+    width: 60%;
+    height: 100%;
+  }
+}
+
+@media (min-width: 3840px) {
+  .headerContainer a svg {
+    width: 100%;
+    height: 100%;
+  }
+  .dropdown-toggle,
+  .dropdown-item {
+    font-size: 2rem !important;
+  }
+}
+
+@media (min-width: 7680px) {
+  .headerContainer a svg {
+    width: 200%;
+  }
+  .dropdown-toggle,
+  .dropdown-item {
+    font-size: 5rem !important;
+  }
+}
+
 @media (min-width: 1200px) {
   .headerContainer {
     padding: 1vh 2vw;

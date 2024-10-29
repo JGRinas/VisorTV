@@ -1,37 +1,36 @@
-.left-panel {
-  background-color: #f9f9f9;
+.left-panel-home {
+  background-color: #fff;
   border-radius: 8px;
-  padding: 1rem;
+  padding: 1vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  width: 90%;
 }
 
 .components-container {
   display: flex;
   flex-direction: column;
   width: 100%;
-  gap: 10px;
+  gap: 1vh;
 }
 
-@media (min-width: 1200px) {
-  .left-column {
-    width: 16vw;
+@media (max-width: 1200px) {
+  .left-panel {
+    width: 90%;
     padding: 2vh 0.8vw;
   }
 }
 
-@media (max-width: 768px) {
-  .left-column {
-    width: 25vw;
+@media (min-width: 7680px) {
+  .text,
+  .text-green,
+  .title {
+    font-size: 4rem;
   }
-}
-
-@media (max-width: 480px) {
-  .left-column {
-    width: 35vw;
-    padding: 2vh 3vw;
-    gap: 2vh;
+  .card-temperature-icon {
+    width: 20rem;
+    height: 20rem;
   }
 }

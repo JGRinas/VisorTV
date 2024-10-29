@@ -1,11 +1,11 @@
-.screen-builder-container {
+.container-home {
   display: flex;
   flex-direction: column;
   height: 100vh;
   color: #000;
 }
 
-.screen-builder-content {
+.main-container {
   display: grid;
   grid-template-columns: 1fr 3fr;
   gap: 1rem;
@@ -13,13 +13,13 @@
   height: calc(100vh - 70px);
 }
 
-.center-content {
+.center-content-home {
   display: grid;
   grid-template-rows: 2fr 3fr;
   gap: 1rem;
 }
 
-.lower-center-content {
+.lower-center-content-home {
   display: grid;
   grid-template-columns: 2fr 1fr;
   gap: 1rem;
@@ -27,4 +27,10 @@
 
 .card-temperature-container {
   width: 100%;
+}
+
+@media (max-width: 1280px) {
+  .center-content-home {
+    grid-template-rows: 1fr 4fr;
+  }
 }

@@ -14,13 +14,13 @@ const HomeWrapper = () => (
 
 const Home = () => {
   return (
-    <div className="screen-builder-container">
+    <div className="container-home">
       <Header />
-      <main className="screen-builder-content">
+      <main className="main-container">
         <LeftColumn />
-        <div className="center-content">
+        <div className="center-content-home">
           <Carousel />
-          <div className="lower-center-content">
+          <div className="lower-center-content-home">
             <CameraView />
             <StaticInfo />
           </div>

@@ -40,8 +40,8 @@
   position: relative;
 }
 
-.carousel-image {
+.carousel-image-edit {
   width: 100px;
-  height: auto;
+  height: 50px;
   border-radius: 4px;
 }

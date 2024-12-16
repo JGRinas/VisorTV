@@ -37,7 +37,6 @@ const CustomCarousel = () => {
     <Carousel
       responsive={responsive}
       infinite={true}
-      autoPlay={true}
       autoPlaySpeed={3000}
       showDots={true}
       containerClass="carousel-container"

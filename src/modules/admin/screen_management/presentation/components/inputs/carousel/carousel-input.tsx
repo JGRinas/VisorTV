@@ -36,7 +36,7 @@ const CarouselInput = () => {
             <img
               src={item.imageUrl}
               alt="Carrusel"
-              className="carousel-image"
+              className="carousel-image-edit"
             />
             <DeleteSectionButton onClick={() => removeCarouselItem(item.id)} />
           </div>

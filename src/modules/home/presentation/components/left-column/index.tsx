@@ -14,40 +14,42 @@ export const LeftColumn = () => {
       <div className="components-container">
         {weatherComponent?.weatherItems.includes("location") && (
           <Card icon="location">
-            <Title>{`${weatherInfo.location.province}, ${weatherInfo.location.country}`}</Title>
+            <Title>{`${weatherInfo?.location?.province ?? "Corrientes"} , ${
+              weatherInfo?.location?.country ?? "Argentina"
+            }`}</Title>
           </Card>
         )}
         {weatherComponent?.weatherItems.includes("temperature") && (
           <CardTemperature
-            degrees={weatherInfo.temperature}
-            title={weatherInfo.condition}
-            icon={weatherInfo.icon}
+            degrees={weatherInfo?.temperature}
+            title={weatherInfo?.condition}
+            icon={weatherInfo?.icon}
           />
         )}
         {weatherComponent?.weatherItems.includes("humidity") && (
           <Card icon="humidity">
             <Title>Humedad:</Title>
-            <Text>{weatherInfo.humidity}</Text>
+            <Text>{weatherInfo?.humidity}</Text>
           </Card>
         )}
         {weatherComponent?.weatherItems.includes("pressure") && (
           <Card icon="pressure">
             <Title>Presión:</Title>
-            <Text>{weatherInfo.pressure}</Text>
+            <Text>{weatherInfo?.pressure}</Text>
           </Card>
         )}
         {weatherComponent?.weatherItems.includes("wind") &&
-          weatherInfo.wind && (
+          weatherInfo?.wind && (
             <Card icon="wind">
               <Title>Viento:</Title>
               {/* Formatea la velocidad y la dirección del viento */}
-              <Text>{`${weatherInfo.wind} km/h, Dirección: ${weatherInfo.wind.deg}°`}</Text>
+              <Text>{`${weatherInfo?.wind} km/h`}</Text>
             </Card>
           )}
         {weatherComponent?.weatherItems.includes("visibility") && (
           <Card icon="visibility">
             <Title>Visibilidad:</Title>
-            <Text>{weatherInfo.visibility}</Text>
+            <Text>{weatherInfo?.visibility}</Text>
           </Card>
         )}
       </div>

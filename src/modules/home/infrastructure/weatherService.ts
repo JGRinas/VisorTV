@@ -9,7 +9,7 @@ export const fetchWeatherData = async (location: {
   try {
     const response = await axios.get(BASE_URL, {
       params: {
-        q: `${location.province},${location.country}`,
+        q: `${location?.province},${location?.country}`,
         units: "metric",
         appid: API_KEY,
         lang: "es",
